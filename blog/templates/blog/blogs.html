@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Blogs {% endblock title %}
+
+{% block content %}
+    {% include 'includes/navbar.html' %}
+    <h1>Ivan has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h1>
+    {% for blog in blogs %}
+        <h2><a href="{% url 'blog:blog_info' blog.id %}">{{ blog.title }}</a></h2>
+        <h4>{{ blog.date }}</h4>
+        <p>{{ blog.content|truncatechars:100 }}</p>
+    {% endfor %}
+{% endblock content %}
